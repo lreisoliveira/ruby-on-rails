@@ -1,10 +1,10 @@
 # Overview
 
-- Projeto com objetivo de cadastrar questionários da CIPA para serem respondidos pelos colaboradores da FCL
+- Fornecer através de API, criar e consultar questionários
 
 ## Instalação
 #### Clone do projeto
-    git clone git@bitbucket.org:casperlibero/cipa-questionario.git
+    git clone https://github.com/lreisoliveira/ruby-on-rails-questionario-api.git
 
 ## Configuração do projeto
 ##### Executar a partir do diretório raiz do projeto
