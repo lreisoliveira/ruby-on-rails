@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Perguntas do questionário</h2>
+
+<h4><%= @questionario.nome  %></h4>
+
+<% if  @questionarios_perguntas.count > 0  %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questionarios_perguntas.each do |questionario_pergunta| %>
+          <tr>
+            <td><%= questionario_pergunta.descricao %></td>
+            <!--td><%= link_to 'Show', questionario_pergunta %></td-->
+            <!--td><%= link_to 'Editar', edit_questionario_pergunta_path(questionario_pergunta) %></td-->
+            <td><%= link_to 'Excluir', questionario_pergunta, method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+<br />
+<button type="submit" class="btn btn-danger"><%= link_to 'Voltar', 'javascript: history.back()' %></button>
+<button type="submit" class="btn btn-info"><%= link_to 'Vincular nova pergunta', "/questionarios/#{@questionario.id}/perguntas/adicionar" %></button>

@@ -1,0 +1,36 @@
+<h2>Ranking por questionário</h2>
+<h4><%= @questionario.nome %></h4>
+<br />
+<div class="text-center">
+  <div onclick="sortear()" class="btn btn-success btn-lg text-center">Sortear</div>
+  <h3 id="sorteado"></h3>
+</div>
+<br />
+<% if @lista.count > 0 %>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Colaborador</th>
+        <th>Acertos</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <input type="hidden" value="<%=@lista.count %>" name="total_pessoas" id="total_pessoas" />
+
+      <% posicao = 0
+         @lista.each do |pessoa|
+           posicao = posicao + 1 %>
+          <tr id='posicao_<%=posicao%>' nome="<%=pessoa[0] %>">
+            <td><%= posicao%></td>
+            <td><%=pessoa[0] %></td>
+            <td><%=pessoa[1] %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <div class="alert alert-info text-center" role="alert">Não há respostas para este questionário</div>
+<% end %>
+<div class="btn btn-info btn-sm"><%= link_to 'Voltar', "/ranking" %></div>

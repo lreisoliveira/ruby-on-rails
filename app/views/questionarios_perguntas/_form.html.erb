@@ -1,0 +1,37 @@
+<%= form_for(@questionario_pergunta, html: {class:'form-horizontal'}) do |f| %>
+  <% if @questionario_pergunta.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@questionario_pergunta.errors.count, "error") %> prohibited this questionario_pergunta from being saved:</h2>
+
+      <ul>
+      <% @questionario_pergunta.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @perguntas.count > 0  %>
+
+      <div class="field">
+        <%= f.hidden_field :questionario_id, value: @questionario_id %>
+      </div>
+      <div class="field">
+        <select name="questionario_pergunta[pergunta_id]" id="questionario_pergunta_pergunta_id" class="form-control">
+          <% @perguntas.each do |pergunta| %>
+              <option value="<%=pergunta.id%>"><%=pergunta.descricao %></option>
+          <% end %>
+        </select>
+
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn btn-success">Vincular pergunta</button>
+      </div>
+  <% else %>
+
+    <div>Não há perguntas para serem adicionadas</div>
+    <br />
+
+  <% end %>
+
+<% end %>

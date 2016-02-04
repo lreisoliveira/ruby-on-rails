@@ -1,0 +1,249 @@
+@charset "utf-8";
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+	margin: 0px;
+	font-family: 'Lato', sans-serif;
+}
+.container{
+	width:100%;
+	background:#FFFFFF;
+}
+.content{
+	width:970px;
+	margin-left: auto;
+    margin-right: auto;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	display: table;
+}
+.questoes{
+	background:#0d7242;
+}
+.logo{
+	text-align:center;
+}
+.descricao{
+	font-size:18px;
+	margin-top: 15px;
+	margin-bottom:20px;
+}
+.video{
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	height: 0;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.48);
+	-moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.48);
+	box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.48);
+}
+
+.video video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.cipatico{
+	float: left;
+}
+.pergunta{
+	font-size:18px;
+	font-weight: 900;
+	padding: 30px 35px;
+	color:#0d7242;
+	background:#FFFFFF;
+	-moz-border-radius: 45px;
+	-webkit-border-radius: 45px;
+	border-radius: 45px;
+	margin-left: 115px;
+}
+.content.opcoes{
+	padding-top:0px;
+}
+.respostas{
+	color:#FFFFFF;
+	padding-left: 45px;
+}
+input[type="submit"] {
+	font-family: 'Lato', sans-serif;
+	font-size:14px;
+    float: right;
+    background: #0D7242;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 13px 50px;
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	margin: 10px;
+	cursor: pointer;
+}
+label {
+    font-size: 18px;
+	margin-bottom: 20px;
+    width: 100%;
+    display: block;
+}
+.css-radio {
+    width: 1.5em;
+    height: 1.3em;
+	margin-top: 0px;
+}
+
+@media (max-width:991px){
+	.content {
+    	width: 100%;
+		padding: 20px 20px;
+	}
+	.pergunta{
+	    padding: 20px 35px;
+	}
+
+}
+@media (max-width: 767px){
+	.descricao {
+   	 	font-size: 16px;
+	}
+	.pergunta{
+	    padding: 15px 20px;
+	}
+	.respostas {
+    	padding-left: 0px;
+	}
+	.cipatico img{
+	    width: 80px;
+    	height: auto;
+	}
+	.pergunta {
+    	margin-left: 62px;
+		font-size: 16px;
+    	font-weight: 400;
+	}
+	.logo img {
+		width: 160px;
+		height: auto;
+	}
+	label {
+    	font-size: 16px;
+	}
+	.pergunta {
+		-moz-border-radius: 25px;
+		-webkit-border-radius: 25px;
+		border-radius: 25px;
+	}
+	input[type="submit"] {
+    	margin: 20px 10px 10px 10px;
+	}
+}
+@media (max-width: 300px){
+	.cipatico {
+   		 display: none;
+	}
+	.pergunta {
+    	margin-left: 0px;
+	}
+}
+.obrigado {
+    color: darkgreen;
+}
+
+.sair:hover {
+    color: darkred;
+}
+
+.erro {
+    color: darkred;
+}
+
+.alerta {
+    margin-top: 200px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    display: none;
+}
+
+.login .content{
+    padding-top: 0;
+    position: relative;
+    height: 900px;
+}
+.cracha-container, .cracha-corrente  {
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 313px;
+    width: 254px;
+    z-index: 1;
+}
+.cracha-corrente {
+    top: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+.cracha-topo{
+    height: 35px;
+}
+.cracha-form{
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+    height: 330px;
+}
+.cracha-img-perfil{
+    margin: ;
+}
+.cracha-img-perfil {
+    display: block;
+    margin: auto;
+    padding: 38px 0;
+}
+.cracha-form input, .cracha-form button{
+    display: block;
+    width: 175px;
+    height: 35px;
+    margin: auto auto 35px;
+    padding-left: 5px;
+}
+.cracha-form button{
+    width: 127px;
+    height: 39px;
+    background: #50c53d;
+    color: #fff;
+    border: 1px solid #00a651;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.login-aviso{
+    bottom: 50px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    width: 70%;
+    text-align: center;
+}
+.login-aviso p{
+    float: right;
+    padding: 20px;
+}
+/*erro*/
+.erro img {
+    display: block;
+    margin: 25vh auto;
+    width: 80%;
+}
+.erro .content{
+    height: 100vh;
+}
+
+#sorteado {
+    height: 45px;
+    color: #730E15;
+}

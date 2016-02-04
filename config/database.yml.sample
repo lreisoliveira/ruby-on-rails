@@ -1,0 +1,26 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: FCLPRJ_CIPA
+  username: fclprj_cipa
+  password: fclprj_cipadev
+  host: fcl-db-hml-01
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: cipa_questionario_test
+  username: root
+  password: root
+  host: localhost
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: FCLPRJ_CIPA
+  username: fclprj_cipa
+  password: fcLprj_c3p1
+  host: fcl-db-prd-00

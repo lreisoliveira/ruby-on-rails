@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Questionarios Respostas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Questionario</th>
+      <th>Participante</th>
+      <th>Pergunta</th>
+      <th>Alternativa</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questionarios_respostas.each do |questionario_resposta| %>
+      <tr>
+        <td><%= questionario_resposta.questionario %></td>
+        <td><%= questionario_resposta.participante %></td>
+        <td><%= questionario_resposta.pergunta %></td>
+        <td><%= questionario_resposta.alternativa %></td>
+        <td><%= link_to 'Show', questionario_resposta %></td>
+        <td><%= link_to 'Edit', edit_questionario_resposta_path(questionario_resposta) %></td>
+        <td><%= link_to 'Destroy', questionario_resposta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Questionario resposta', new_questionario_resposta_path %>

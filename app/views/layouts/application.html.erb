@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin questionário</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet" type="text/css">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+    <div class="container login">
+        <% if session[:nome] && request.url[request.url.to_s.length-1] != '/' %>
+          <br />
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                    <a class="navbar-brand" href="/questionarios">Questionários</a>
+                    <a class="navbar-brand" href="/perguntas">Perguntas</a>
+                    <a class="navbar-brand" href="/alternativas">Alternativas</a>
+                    <a class="navbar-brand" href="/ranking">Ranking</a>
+                    <a class="navbar-brand"  href="/logout" style="color:red">Sair</a>
+              </div>
+              <div style="float: right; margin-top: 15px;"><b>Olá <%=session[:nome] %></b></div>
+            </div>
+          </nav>
+        <% end %>
+        <%= yield %>
+    </div>
+</body>
+</html>

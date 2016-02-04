@@ -1,0 +1,38 @@
+<%= form_for(@pergunta, html: {class:'form-horizontal'}) do |f| %>
+  <% if @pergunta.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pergunta.errors.count, "error") %> prohibited this pergunta from being saved:</h2>
+
+      <ul>
+      <% @pergunta.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :selecione_o_questionário %><br>
+    <select name="pergunta[questionario_id]" id="pergunta_questionario_id" class="form-control">
+      <% @questionarios.each do |questionario| %>
+          <option <%= (!@questionario_pergunta.nil? && @questionario_pergunta['questionario_id'] == questionario.id ? 'selected=selected' : nil)  %>  value="<%=questionario.id %>"><%=questionario.nome %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= f.label :descrição %><br>
+    <%= f.text_field :descricao, :class => 'form-control' %>
+  </div>
+  <div class="field">
+      <%= f.label :url_do_vídeo %><br>
+      <%= f.text_field :video, :class => 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :vigente %>
+    <%= f.check_box :vigente %>
+  </div>
+  <div class="actions">
+    <button type="submit" class="btn btn-success">Salvar pergunta</button>
+  </div>
+<% end %>

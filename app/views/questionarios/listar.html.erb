@@ -1,0 +1,81 @@
+<% if @acesso
+
+    if @questionarios.count > 0 %>
+
+        <div class="logo">
+            <img src="/images/gincana-cipa-web.png"  width="240" height="135" alt=""/>
+        </div>
+        <br /><br />
+
+        <h4 class="text-center"><%=@participante_nome %> - <a id="voltar" class="sair" href="/">Sair</a></h4>
+
+        <table class="table table-striped">
+            <tbody>
+                <% @questionarios.each do |questionario| %>
+                    <tr>
+                        <td class="text-center"><h4><%= questionario.nome %></h4></td>
+                        <td class="text-left">
+                            <div class="btn btn-success btn-sm" onclick="javascript: link('<%= "/questionarios/#{questionario.id}/responder" %>')">Responder</div>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+
+    <% else %>
+
+        <style>
+            .login{
+                background: url(/images/trofeis.jpg) #0d7242;
+                color: #fff;
+            }
+        </style>
+
+        <div class="container login erro">
+            <div class="content ">
+                <img src="/images/cipatico-erro.png" alt="">
+            </div>
+        </div>
+
+        <a id="voltar" href="/"></a>
+        <script>redirect();</script>
+
+    <% end
+
+else %>
+
+    <style>
+        .login {
+            background: url(/images/trofeis.jpg) #0d7242;
+            color: #fff;
+        }
+    </style>
+
+    <div class="content">
+
+        <div class="cracha-corrente">
+            <img src="/images/cracha-corrente.png" alt="">
+        </div>
+
+        <div class="cracha-container">
+            <div class="cracha-topo">
+                <img src="/images/cracha-topo.png" alt="">
+            </div>
+            <div class="cracha-form">
+                <img class="cracha-img-perfil" src="/images/no-img.png" alt="" />
+                <form action="/" method="post" onsubmit="return validar_acesso();">
+                    <input type="text" id="re" name="re" placeholder="Digite seu RE" class="form-username form-control">
+                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                    <button>Entrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="login-aviso">
+            <img src="images/logo-cipa-branco.png" alt="">
+            <p>Para participar preencha o fomulário acima com o seu RE.<br>Você só poderá participar uma única vez, boa sorte!</p>
+        </div>
+
+    </div>
+
+<% end %>

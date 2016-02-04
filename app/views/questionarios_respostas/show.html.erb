@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Questionario:</strong>
+  <%= @questionario_resposta.questionario %>
+</p>
+
+<p>
+  <strong>Participante:</strong>
+  <%= @questionario_resposta.participante %>
+</p>
+
+<p>
+  <strong>Pergunta:</strong>
+  <%= @questionario_resposta.pergunta %>
+</p>
+
+<p>
+  <strong>Alternativa:</strong>
+  <%= @questionario_resposta.alternativa %>
+</p>
+
+<%= link_to 'Edit', edit_questionario_resposta_path(@questionario_resposta) %> |
+<%= link_to 'Back', questionarios_respostas_path %>

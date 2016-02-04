@@ -1,0 +1,34 @@
+<%= form_for(@questionario, html: {class:'form-horizontal'}) do |f| %>
+  <% if @questionario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@questionario.errors.count, "erro") %> ocorreu e o questionário não pode ser salvo:</h2>
+
+      <ul>
+      <% @questionario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Nome %><br>
+    <%= f.text_field :nome, :class => 'form-control' %>
+  </div>
+
+  <div class="field" style="float:left">
+    <%= f.label :diponibilizar_a_partir_de %><br>
+    <%= f.date_select :vigencia_inicio,:class => 'form-control' %>
+  </div>
+  <div class="field" style="float:left; margin-left: 40px;">
+    <%= f.label :terminar_em %><br>
+    <%= f.date_select :vigencia_fim,:class => 'form-control' %>
+  </div>
+
+  <br clear="all" /><br clear="all" />
+
+  <div class="actions">
+    <button type="submit" class="btn btn-success">Salvar questionário</button>
+  </div>
+
+<% end %>

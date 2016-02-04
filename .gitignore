@@ -1,0 +1,10 @@
+/.bundle
+/log/*
+!/log/.keep
+/tmp
+/.idea/*
+.idea
+.idea/cipa-questionario.iml
+config/config.yml
+config/database.yml
+/.Gemfile.lock

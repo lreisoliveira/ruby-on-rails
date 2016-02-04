@@ -1,0 +1,70 @@
+<div class="content">
+
+    <div class="logo">
+        <img src="/images/gincana-cipa-web.png"  width="240" height="135" alt=""/>
+    </div>
+    <br />
+    <h4 class="text-center"><%=@participante_nome %> - <a id="voltar" class="sair" href="/">Sair</a></h4>
+
+    <% if @questionario_pergunta.nil? %>
+
+        <div class="row text-center">
+            <h3 class="obrigado"><%= @mensagem.nil? ? 'Obrigado pela participação' : @mensagem %></h3>
+            <button type="submit" class="btn btn-info"><a id="voltar" href="/">Voltar ao início</a></button>
+            <script>redirect();</script>
+        </div>
+
+    <% else %>
+
+        <br />
+        <h3><%= @questionario_pergunta.questionario.nome %></h3>
+          <br />
+
+          <% if !@questionario_pergunta.video.nil? %>
+              <div class="video">
+                <video controls src="<%= @questionario_pergunta.video %>"></video>
+              </div>
+          <% end %>
+
+      </div>
+        </div>
+
+      <div class="alert alert-danger alerta" role="alert">
+        <strong>Ops!</strong> Antes de responder, escolha uma alternativa!
+      </div>
+
+      <div class="container questoes">
+        <div class="content">
+          <div class="cipatico">
+            <img src="/images/cipatico.png" width="150" height="116" alt=""/>
+          </div>
+          <div class="pergunta">
+            <%= @questionario_pergunta.descricao %>
+          </div>
+        </div>
+
+
+        <div class="content opcoes">
+
+          <form name="quest" method="post" onsubmit="return validar()" action='<% "/questionarios/#{@questionario_pergunta.questionario.id}/responder" %>' >
+            <div class="respostas">
+                <% @questionario_pergunta.alternativa.each do |alternativa| %>
+                  <label>
+                    <input type="radio" name="alternativa" value="<%= alternativa.id %>" class="css-radio" /> <%= alternativa.descricao %>
+                  </label>
+                <% end %>
+                <br />
+                <br />
+                <input type="hidden" name="participante_id" value="<%=@participante_id%>"  />
+                <input type="hidden" name="questionario_id" value="<%= @questionario_pergunta.questionario.id %>" />
+                <input type="hidden" name="pergunta_id" value="<%= @questionario_pergunta.id %>" />
+                <input type="hidden" name="questionario_pergunta_id" value="<%= @questionario_pergunta.id %>" />
+                <input type="submit" value="Responder"/>
+                <input name="authenticity_token" type="hidden" value="x37DrAAwyIIb7s+w2+AdoCR8cAJIpQhIetKRrPgG5VA=">
+            </div>
+          </form>
+        </div>
+      </div>
+    <% end %>
+
+</div>

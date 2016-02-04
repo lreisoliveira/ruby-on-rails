@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Perguntas</h2>
+
+<% if @perguntas.count > 0 %>
+<table class="table table-striped">
+  <tbody>
+    <% aux_questionario = nil %>
+    <% @perguntas.each do |pergunta| %>
+
+      <% if aux_questionario != pergunta.questionario.id
+           aux_questionario = pergunta.questionario.id
+      %>
+          <tr>
+            <th colspan="5" class="text-left" style="color: #122b40"><%= pergunta.questionario.nome %></th>
+          </tr>
+      <% end %>
+
+      <tr>
+        <td class="espacamento_esquerda"><%= pergunta.descricao %></td>
+        <td><%= pergunta.vigente == false ? pergunta.vigente.to_s.gsub("false", "Inativo") : pergunta.vigente.to_s.gsub("true", "Ativo") %></td>
+        <td><%= link_to 'Editar', edit_pergunta_path(pergunta) %></td>
+        <td><%= link_to 'Excluir', pergunta, method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<div class="btn btn-info"><%= link_to 'Cadastrar nova', new_pergunta_path %></div>
