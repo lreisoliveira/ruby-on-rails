@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   #
   scope '/:v1.0' do
     resources :questionarios, only: [:index, :show] do
-      resources :perguntas, only: [:index, :show]
+      resources :perguntas, only: [:index, :show] do
+        resources :alternativas, only: [:index, :show]
+      end
     end
   end
 

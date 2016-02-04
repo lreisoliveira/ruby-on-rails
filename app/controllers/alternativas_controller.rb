@@ -1,38 +1,38 @@
 class AlternativasController < ApplicationController
   before_action :set_alternativa, only: [:show, :edit, :update, :destroy]
 
-  include ApplicationHelper
-
-  # GET /alternativas
-  # GET /alternativas.json
   def index
-    autenticar_admin
-    @alternativas = Alternativa.all
+    if params[:pergunta_id]
+      @alternativas = Alternativa.where(pergunta_id: params[:pergunta_id])
+    else
+      @alternativas = Alternativa.all
+    end
+    render json: @alternativas, status: :ok
   end
 
-  # GET /alternativas/1
-  # GET /alternativas/1.json
   def show
-    autenticar_admin
+    if params[:pergunta_id]
+      @alternativas = Alternativa.where(pergunta_id: params[:pergunta_id], id: params[:id])
+    else
+      @alternativas = Alternativa.all
+    end
+    render json: @alternativas, status: :not_found
   end
 
   # GET /alternativas/new
   def new
-    autenticar_admin
     @perguntas = Pergunta.all.where(vigente: true)
     @alternativa = Alternativa.new
   end
 
   # GET /alternativas/1/edit
   def edit
-    autenticar_admin
     @perguntas = Pergunta.all.where(vigente: true)
   end
 
   # POST /alternativas
   # POST /alternativas.json
   def create
-    autenticar_admin
     @perguntas = Pergunta.all.where(vigente: true)
     @alternativa = Alternativa.new(alternativa_params)
 
@@ -66,7 +66,6 @@ class AlternativasController < ApplicationController
   # DELETE /alternativas/1
   # DELETE /alternativas/1.json
   def destroy
-    autenticar_admin
     @perguntas = Pergunta.all.where(vigente: true)
     @alternativa.destroy
     respond_to do |format|
