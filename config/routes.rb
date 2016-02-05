@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # root :to => "questionarios#listar"
   # root :to => "admin#index"
   # post  "/" => "questionarios#listar"
   #
@@ -24,7 +23,8 @@ Rails.application.routes.draw do
   # get "ranking/:id" => "relatorios#ranking_questionario"
   #
   scope '/:v1.0' do
-    resources :questionarios, only: [:index, :show] do
+    root :to => "questionarios#index"
+    resources :questionarios, only: [:index, :show, :create] do
       resources :perguntas, only: [:index, :show] do
         resources :alternativas, only: [:index, :show]
       end
