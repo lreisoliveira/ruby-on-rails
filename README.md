@@ -14,3 +14,39 @@ $ ./install.sh
 
 - Executar na linha de comando, a partir da raiz do projeto para criar a base de dados:
     $ ./install.sh
+
+## API
+##### GET
+##### Listar todos os questionários
+
+/v1.0/questionarios/
+
+##### Listar um questionário específico
+
+/v1.0/questionarios/[:id]
+
+##### Listar as perguntas de um questionário
+
+/v1.0/questionarios/[:id]/perguntas/
+
+##### Listar uma pergunta específica
+
+/v1.0/questionarios/[:id_questionario]/perguntas/[:id]
+
+##### Listar as alternativas do questionário
+
+/v1.0/questionarios/[:id_questionario]/perguntas/[:id_pergunta]/alternativas
+
+##### Listar uma alternativa específica
+
+/v1.0/questionarios/[:id_questionario]/perguntas/[:id_questionario]/alternativas/[:id]
+
+##### POST
+
+/v1.0/questionarios/
+
+  Parâmetros:
+
+  nome string
+  vigencia_inicio date dd/mm/yyyy
+  vigencia_fim date dd/mm/yyyy

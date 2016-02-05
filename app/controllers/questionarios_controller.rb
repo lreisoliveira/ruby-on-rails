@@ -1,45 +1,34 @@
 class QuestionariosController < ApplicationController
   before_action :set_questionario, only: [:index, :show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
-  include ApplicationHelper
-
-  # GET /questionarios
-  # GET /questionarios.json
   def index
-    render json: @questionarios, status: :not_found
+    render json: @questionarios, status: :ok
   end
 
-  # GET /questionarios/1
-  # GET /questionarios/1.json
   def show
-    render json: @questionarios, status: :not_found
+    render json: @questionarios, status: :ok
   end
 
-  # GET /questionarios/new
   def new
-    autenticar_admin
     @questionario = Questionario.new
   end
 
-  # GET /questionarios/1/edit
   def edit
   end
 
-  # POST /questionarios
-  # POST /questionarios.json
   def create
-    autenticar_admin
-    @questionario = Questionario.new(questionario_params)
-
-    respond_to do |format|
-      if @questionario.save
-        format.html { redirect_to @questionario, notice: 'Questionário criado!' }
-        format.json { render :show, status: :created, location: @questionario }
-      else
-        format.html { render :new }
-        format.json { render json: @questionario.errors, status: :unprocessable_entity }
-      end
-    end
+    @questionario = Questionario.create(questionario_params)
+    render json: @questionario, status: :ok
+    # respond_to do |format|
+    #   if @questionario.save
+    #     # format.html { redirect_to @questionario, notice: 'Questionário criado!' }
+    #     render :show, status: :created, location: @questionario
+    #   else
+    #     # format.html { render :new }
+    #     # format.json { render json: @questionario.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /questionarios/1
@@ -159,6 +148,6 @@ class QuestionariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def questionario_params
-      params.require(:questionario).permit(:nome, :vigencia_inicio, :vigencia_fim)
+      params.permit(:nome, :vigencia_inicio, :vigencia_fim)
     end
 end
