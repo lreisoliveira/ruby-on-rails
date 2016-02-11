@@ -29,6 +29,17 @@ class ParticipantesController < ApplicationController
     render json: @participante, status: :ok
   end
 
+  def gravar_resposta
+    respondeu = ParticipanteAlternativa.where(participante_id: params[:participante_id], alternativa_id: params[:id]).first
+    if respondeu.nil?
+      @resposta = ParticipanteAlternativa.create({participante_id: params[:participante_id], alternativa_id: params[:id]})
+    else
+      @resposta = ParticipanteAlternativa.update(respondeu.id, {alternativa_id:  params[:id]})
+    end
+    render json: @resposta, status: :ok
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_participante

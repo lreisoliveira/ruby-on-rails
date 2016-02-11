@@ -24,26 +24,31 @@ Rails.application.routes.draw do
   #
   scope '/:v1.0' do
     root :to => "questionarios#index"
+
     resources :questionarios, only: [:index, :show, :create, :update, :destroy] do
       resources :perguntas, only: [:index, :show] do
         resources :alternativas, only: [:index, :show] do
-          resources :participantes, only: [:index]
+          resources :participantes, only: [:index, :show]
         end
       end
     end
+
     resources :perguntas, only: [:index, :show, :create, :update, :destroy] do
-      resources :alternativas, only: [:index, :show]
+      resources :alternativas, only: [:index, :show] do
+        resources :participantes, only: [:index, :show]
+      end
     end
-    resources :alternativas, only: [:index, :show, :create, :update, :destroy]
+
+    resources :alternativas, only: [:index, :show, :create, :update, :destroy] do
+      resources :participantes, only: [:index, :show]
+    end
+
     resources :participantes, only: [:index, :show, :create, :update, :destroy]
 
+    post  "/participantes/:participante_id/alternativa/:id"  => "participantes#gravar_resposta"
   end
 
   # resources :questionarios_respostas
   # resources :questionarios_participantes
-  # resources :participantes
   # resources :questionarios_perguntas
-  # resources :alternativas
-  # resources :perguntas
-  # resources :questionarios
 end
