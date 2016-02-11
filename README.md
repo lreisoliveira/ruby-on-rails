@@ -51,6 +51,8 @@ $ ./install.sh
   vigencia_inicio date dd/mm/yyyy
   vigencia_fim date dd/mm/yyyy
 
+/v1.0/participantes/[:participante_id]/alternativa/[:id]
+
 
 ##### PUT
 
@@ -66,3 +68,4 @@ $ ./install.sh
 ##### DELETE
 
 /v1.0/questionarios/:id
+

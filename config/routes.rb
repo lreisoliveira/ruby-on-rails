@@ -5,13 +5,6 @@ Rails.application.routes.draw do
   # get  "admin" => "admin#index"
   # post "admin" => "admin#index"
   #
-  # get "logout"  => "admin#logout"
-
-  # get "v1.0/questionarios/"                      => "v10#show"
-  # get "v1.0/questionarios/:id"                   => "v10#show"
-  # get "v1.0/questionarios/:id/perguntas"         => "v10#perguntas"
-  # get "v1.0/questionarios/:id/perguntas/:id_pergunta"  => "v10#perguntas"
-
   # get "questionarios/:id/perguntas"              => "questionarios_perguntas#index"
   # get "questionarios/:id/perguntas/adicionar"    => "questionarios_perguntas#new"
   # get "questionarios/:id/responder"              => "questionarios#responder"
