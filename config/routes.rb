@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     root :to => "questionarios#index"
     resources :questionarios, only: [:index, :show, :create, :update, :destroy] do
       resources :perguntas, only: [:index, :show] do
-        resources :alternativas, only: [:index, :show]
+        resources :alternativas, only: [:index, :show] do
+          resources :participantes, only: [:index]
+        end
       end
     end
     resources :perguntas, only: [:index, :show, :create, :update, :destroy] do

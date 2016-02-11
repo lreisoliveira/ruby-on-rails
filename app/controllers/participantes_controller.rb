@@ -3,7 +3,11 @@ class ParticipantesController < ApplicationController
   before_action :set_participante, only: [:show, :edit, :update, :destroy]
 
   def index
-    render json: Participante.all, status: :ok
+    if params[:alternativa_id]
+      render json: ParticipanteAlternativa.where(alternativa_id: params[:alternativa_id]).map{|alternativa| alternativa.participante}, status: :ok
+    else
+      render json: Participante.all, status: :ok
+    end
   end
 
   def show
