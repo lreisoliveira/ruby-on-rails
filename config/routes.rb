@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       resources :alternativas, only: [:index, :show]
     end
     resources :alternativas, only: [:index, :show, :create, :update, :destroy]
+    resources :participantes, only: [:index, :show, :create, :update, :destroy]
+
   end
 
   # resources :questionarios_respostas
