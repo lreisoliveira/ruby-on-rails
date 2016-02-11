@@ -10,49 +10,24 @@ class QuestionariosController < ApplicationController
     render json: @questionarios, status: :ok
   end
 
-  def new
-    @questionario = Questionario.new
-  end
-
-  def edit
-  end
-
   def create
     @questionario = Questionario.create(questionario_params)
     render json: @questionario, status: :ok
-    # respond_to do |format|
-    #   if @questionario.save
-    #     # format.html { redirect_to @questionario, notice: 'Questionário criado!' }
-    #     render :show, status: :created, location: @questionario
-    #   else
-    #     # format.html { render :new }
-    #     # format.json { render json: @questionario.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def update
     @questionario = Questionario.update(params[:id], questionario_params)
     render json: @questionario, status: :ok
-    # respond_to do |format|
-    #   if @questionario.update(questionario_params)
-    #     format.html { redirect_to @questionario, notice: 'Questionário atualizado!' }
-    #     format.json { render :show, status: :ok, location: @questionario }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @questionario.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def destroy
-    @questionario = Questionario.delete(params[:id])
-    render json: @questionario, status: :ok
-    # @questionario.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to questionarios_url, notice: 'Questionário excluído!' }
-    #   format.json { head :no_content }
-    # end
+    perguntas  = Pergunta.where(questionario_id: params[:id]).count
+    if perguntas == 0
+      @questionario = Questionario.delete(params[:id])
+      render json: @questionario, status: :ok
+    else
+      render json: {mensagem: 'Não foi possível excluir a questão pois há perguntas relacionadas'}, status: :ok
+    end
   end
 
   def listar
