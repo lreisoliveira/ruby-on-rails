@@ -61,3 +61,8 @@ $ ./install.sh
   nome string
   vigencia_inicio date dd/mm/yyyy
   vigencia_fim date dd/mm/yyyy
+
+
+##### DELETE
+
+/v1.0/questionarios/:id

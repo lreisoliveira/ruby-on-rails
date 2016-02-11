@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         resources :alternativas, only: [:index, :show]
       end
     end
+    resources :perguntas, only: [:index, :show, :create, :update, :destroy]
   end
 
   # resources :questionarios_respostas
