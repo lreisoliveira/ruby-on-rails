@@ -32,10 +32,8 @@ class QuestionariosController < ApplicationController
   end
 
   def update
-
-      @questionario = Questionario.update(params[:id], questionario_params)
-      render json: @questionario, status: :ok
-
+    @questionario = Questionario.update(params[:id], questionario_params)
+    render json: @questionario, status: :ok
     # respond_to do |format|
     #   if @questionario.update(questionario_params)
     #     format.html { redirect_to @questionario, notice: 'Questionário atualizado!' }
@@ -47,15 +45,14 @@ class QuestionariosController < ApplicationController
     # end
   end
 
-  # DELETE /questionarios/1
-  # DELETE /questionarios/1.json
   def destroy
-    autenticar_admin
-    @questionario.destroy
-    respond_to do |format|
-      format.html { redirect_to questionarios_url, notice: 'Questionário excluído!' }
-      format.json { head :no_content }
-    end
+    @questionario = Questionario.delete(params[:id])
+    render json: @questionario, status: :ok
+    # @questionario.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to questionarios_url, notice: 'Questionário excluído!' }
+    #   format.json { head :no_content }
+    # end
   end
 
   def listar
