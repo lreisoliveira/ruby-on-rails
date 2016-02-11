@@ -19,22 +19,17 @@ class PerguntasController < ApplicationController
  end
 
   def update
-    respond_to do |format|
-      if @pergunta.update(pergunta_params)
-        format.html { redirect_to @pergunta, notice: 'Pergunta atualizada!' }
-        format.json { render :show, status: :ok, location: @pergunta }
-      else
-        format.html { render :edit }
-        format.json { render json: @pergunta.errors, status: :unprocessable_entity }
-      end
-    end
+    @pergunta = Pergunta.update(params[:id], pergunta_params)
+    render json: @pergunta, status: :ok
   end
 
   def destroy
-    @pergunta.destroy
-    respond_to do |format|
-      format.html { redirect_to perguntas_url, notice: 'Pergunta excluída!' }
-      format.json { head :no_content }
+    alternativas = Alternativa.where(pergunta_id: params[:id]).count
+    if alternativas == 0
+      @pergunta = Pergunta.delete(params[:id])
+      render json: @pergunta, status: :ok
+    else
+      render json: {mensagem: 'Não foi possível excluir a pergunta pois há alternativas relacionadas'}, status: :ok
     end
   end
 
