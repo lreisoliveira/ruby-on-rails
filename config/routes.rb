@@ -25,11 +25,14 @@ Rails.application.routes.draw do
   scope '/:v1.0' do
     root :to => "questionarios#index"
     resources :questionarios, only: [:index, :show, :create, :update, :destroy] do
-      resources :perguntas, only: [:index, :show, :create] do
+      resources :perguntas, only: [:index, :show] do
         resources :alternativas, only: [:index, :show]
       end
     end
-    resources :perguntas, only: [:index, :show, :create, :update, :destroy]
+    resources :perguntas, only: [:index, :show, :create, :update, :destroy] do
+      resources :alternativas, only: [:index, :show]
+    end
+    resources :alternativas, only: [:index, :show, :create, :update, :destroy]
   end
 
   # resources :questionarios_respostas
