@@ -50,3 +50,14 @@ $ ./install.sh
   nome string
   vigencia_inicio date dd/mm/yyyy
   vigencia_fim date dd/mm/yyyy
+
+
+##### PUT
+
+/v1.0/questionarios/:id
+
+  Parâmetros:
+
+  nome string
+  vigencia_inicio date dd/mm/yyyy
+  vigencia_fim date dd/mm/yyyy

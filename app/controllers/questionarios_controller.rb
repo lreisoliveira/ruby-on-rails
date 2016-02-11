@@ -31,19 +31,20 @@ class QuestionariosController < ApplicationController
     # end
   end
 
-  # PATCH/PUT /questionarios/1
-  # PATCH/PUT /questionarios/1.json
   def update
-    autenticar_admin
-    respond_to do |format|
-      if @questionario.update(questionario_params)
-        format.html { redirect_to @questionario, notice: 'Questionário atualizado!' }
-        format.json { render :show, status: :ok, location: @questionario }
-      else
-        format.html { render :edit }
-        format.json { render json: @questionario.errors, status: :unprocessable_entity }
-      end
-    end
+
+      @questionario = Questionario.update(params[:id], questionario_params)
+      render json: @questionario, status: :ok
+
+    # respond_to do |format|
+    #   if @questionario.update(questionario_params)
+    #     format.html { redirect_to @questionario, notice: 'Questionário atualizado!' }
+    #     format.json { render :show, status: :ok, location: @questionario }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @questionario.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /questionarios/1
@@ -57,21 +58,6 @@ class QuestionariosController < ApplicationController
     end
   end
 
-  def validar_acesso(funcionario)
-    validacao = funcionario[0]['situacao']['id'] == 1 && funcionario[0]['cargo'] != 'Estagiario' ? true : false
-    if validacao
-      participante = Participante.where(re: funcionario[0]['re']).first
-      if participante.nil?
-        participante = Participante.create({re: funcionario[0]['re'], nome: funcionario[0]['nome']})
-      end
-      session[:participante_id]   = participante.id
-      session[:participante_re]   = participante.re
-      session[:participante_nome] = participante.nome
-      return true
-    end
-    return false
-  end
-
   def listar
     if !params[:re].nil?
       funcionario = Apdata.get('cd_solicitante=' + params[:re].to_s)
@@ -83,10 +69,6 @@ class QuestionariosController < ApplicationController
     @acesso = nil
 
     unless funcionario.nil? || funcionario.count == 0
-      @acesso = validar_acesso(funcionario)
-      unless @acesso
-        @mensagem = 'Colaborador não habilitado para acessar o questionário'
-      end
       @participante_re   = session[:participante_re]
       @participante_nome = session[:participante_nome]
       @questionarios     = Questionario.all.where('"' + Time.now.strftime("%Y-%m-%d") + '" between vigencia_inicio and vigencia_fim and id not in (?)', ParticipanteQuestionario.select('questionario_id').where(participante_id: session[:participante_id]))
@@ -149,5 +131,8 @@ class QuestionariosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def questionario_params
       params.permit(:nome, :vigencia_inicio, :vigencia_fim)
+      # @questionario = Opportunity.find(params[:questionario_id])
+      # @link = @opportunity.links.find(link_params)
+      # params.require(:questionario).permit(:nome, :vigencia_inicio, :vigencia_fim)
     end
 end
