@@ -1,71 +1,96 @@
 # Overview
 
-- Fornecer através de API, criar e consultar questionários
+- Esta API possibilita criar questionários, perguntas e alternativas, criar participantes e suas respectivas resposta.
 
 ## Instalação
-#### Clone do projeto
+#### Clone
     git clone https://github.com/lreisoliveira/ruby-on-rails-questionario-api.git
 
-## Configuração do projeto
+#### Configuração
 ##### Executar a partir do diretório raiz do projeto
 ```
 $ ./install.sh
 ```
 
-- Executar na linha de comando, a partir da raiz do projeto para criar a base de dados:
-    $ ./install.sh
+# API
 
-## API
-##### GET
-##### Listar todos os questionários
+- Atualmente a versão do projeto é a v1.0
 
-/v1.0/questionarios/
+#### Principais recursos
 
-##### Listar um questionário específico
+##### Listar todos questionários
+```
+/v1.0/questionarios/ GET
+```
 
-/v1.0/questionarios/[:id]
+##### Listar questionário específico
+```
+/v1.0/questionarios/[:id] GET
+```
 
 ##### Listar as perguntas de um questionário
+```
+/v1.0/questionarios/[:id]/perguntas/ GET
+```
 
-/v1.0/questionarios/[:id]/perguntas/
-
-##### Listar uma pergunta específica
-
-/v1.0/questionarios/[:id_questionario]/perguntas/[:id]
+##### Listar uma pergunta específica 
+```
+/v1.0/questionarios/[:id_questionario]/perguntas/[:id] GET
+```
 
 ##### Listar as alternativas do questionário
-
-/v1.0/questionarios/[:id_questionario]/perguntas/[:id_pergunta]/alternativas
+```
+/v1.0/questionarios/[:id_questionario]/perguntas/[:id_pergunta]/alternativas GET
+```
 
 ##### Listar uma alternativa específica
+```
+/v1.0/questionarios/[:id_questionario]/perguntas/[:id_questionario]/alternativas/[:id] GET
+```
 
-/v1.0/questionarios/[:id_questionario]/perguntas/[:id_questionario]/alternativas/[:id]
+##### Cadastrar questionário
+```
+/v1.0/questionarios/ POST
+```
 
-##### POST
+  Parâmetros:
+  
+- nome (string)  
+- vigencia_inicio (date dd/mm/yyyy)
+- vigencia_fim (date dd/mm/yyyy)
 
-/v1.0/questionarios/
+##### Cadastrar pergunta
+```
+/v1.0/perguntas/ POST
+```
 
   Parâmetros:
 
-  nome string
-  vigencia_inicio date dd/mm/yyyy
-  vigencia_fim date dd/mm/yyyy
+- questionario_id (integer)  
+- descricao (string)
+- video (string)
+- vigente (boolean)
 
+##### Cadastrar alternativas
+```
+/v1.0/alternativas/ POST
+```
+
+  Parâmetros:
+- pergunta_id (integer)  
+- descricao (string)
+- correto (boolean)
+
+##### Cadastrar participante
+```
+/v1.0/participantes/ POST
+```
+  Parâmetros:
+  
+- re (integer)
+- nome (string)  
+
+##### Cadastrar alternativa respondida pelo participante
+```
 /v1.0/participantes/[:participante_id]/alternativa/[:id]
-
-
-##### PUT
-
-/v1.0/questionarios/:id
-
-  Parâmetros:
-
-  nome string
-  vigencia_inicio date dd/mm/yyyy
-  vigencia_fim date dd/mm/yyyy
-
-
-##### DELETE
-
-/v1.0/questionarios/:id
-
+```
