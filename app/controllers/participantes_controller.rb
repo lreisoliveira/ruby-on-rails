@@ -3,7 +3,11 @@ class ParticipantesController < ApplicationController
   before_action :set_participante, only: [:show, :edit, :update, :destroy]
 
   def index
-    render json: Participante.all, status: :ok
+    if params[:alternativa_id]
+      render json: ParticipanteAlternativa.where(alternativa_id: params[:alternativa_id]).map{|alternativa| alternativa.participante}, status: :ok
+    else
+      render json: Participante.all, status: :ok
+    end
   end
 
   def show
@@ -24,6 +28,17 @@ class ParticipantesController < ApplicationController
     @participante = Participante.delete(params[:id])
     render json: @participante, status: :ok
   end
+
+  def gravar_resposta
+    respondeu = ParticipanteAlternativa.where(participante_id: params[:participante_id], alternativa_id: params[:id]).first
+    if respondeu.nil?
+      @resposta = ParticipanteAlternativa.create({participante_id: params[:participante_id], alternativa_id: params[:id]})
+    else
+      @resposta = ParticipanteAlternativa.update(respondeu.id, {alternativa_id:  params[:id]})
+    end
+    render json: @resposta, status: :ok
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
